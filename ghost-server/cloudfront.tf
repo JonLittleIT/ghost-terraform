@@ -55,6 +55,6 @@ resource "aws_cloudfront_distribution" "ghost-blog" {
 
   viewer_certificate {
     acm_certificate_arn = "${var.cloudfront_ssl_acm_arn}"
-    ssl_support_method  = "vip"
+    ssl_support_method  = "sni-only"
   }
 }
