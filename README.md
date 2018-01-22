@@ -1,5 +1,5 @@
 # ghost-terraform
 
-This Terraform configuration hosts the blog: [https://pragmacoders.com/](https://pragmacoders.com/)
+This Terraform configuration self-hosts the Ghost blog: [https://pragmacoders.com/](https://pragmacoders.com/)
 
-Article on how it's set up, coming soon!
+Article with a tutorial on using this Terraform file to host your own Ghost blog on AWS, coming soon!
