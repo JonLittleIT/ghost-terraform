@@ -23,6 +23,5 @@ module "ghost-blog" {
   key_pair_loc            = "${var.key_pair_location}"
   security_groups         = ["${aws_security_group.ghost-server.id}"]
 
-  ssl_acm_arn             = "${var.ssl_acm_arn}"
   cloudfront_ssl_acm_arn  = "${var.cloudfront_ssl_acm_arn}"
 }
