@@ -17,11 +17,11 @@ resource "aws_elb" "ghost" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:80/"
+    target              = "HTTP:80/health"
     interval            = 30
   }
 
-  instances                   = ["${aws_instance.ghost.id}"]
+  instances                   = ["${aws_instance.ghost.*.id}"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true

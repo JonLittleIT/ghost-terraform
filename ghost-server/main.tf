@@ -1,6 +1,6 @@
 resource "aws_instance" "ghost" {
   ami                     = "${data.aws_ami.ubuntu.id}"
-  instance_type           = "t2.micro"
+  instance_type           = "t2.small"
   key_name                = "${var.key_pair_name}"
   vpc_security_group_ids  = ["${var.security_groups}"]
 
@@ -9,7 +9,14 @@ resource "aws_instance" "ghost" {
   }
 
   lifecycle {
-    ignore_changes = ["vpc_security_group_ids"]
+    ignore_changes  = ["vpc_security_group_ids"]
+    prevent_destroy = true
+  }
+
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = "50"
+    delete_on_termination = "false"
   }
 
   provisioner "remote-exec" {
@@ -83,6 +90,8 @@ resource "aws_instance" "ghost" {
       "sudo cat <<FILEXXX > /etc/systemd/system/ghost.service",
       "${data.template_file.service-config.rendered}",
       "FILEXXX",
+      "sudo ln -s /etc/nginx/sites-available/ghost /etc/nginx/sites-enabled/ghost",
+      "sudo rm /etc/nginx/sites-enabled/default",
       "sudo systemctl enable ghost.service",
       "sudo systemctl start ghost.service",
       "sudo service nginx restart",
