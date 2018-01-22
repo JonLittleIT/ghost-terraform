@@ -8,6 +8,10 @@ resource "aws_instance" "ghost" {
     Name = "${var.name}"
   }
 
+  lifecycle {
+    ignore_changes = ["vpc_security_group_ids"]
+  }
+
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get update",

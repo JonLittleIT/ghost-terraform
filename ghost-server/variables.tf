@@ -9,5 +9,6 @@ variable "db_pass" { type = "string" }
 variable "key_pair_name" { type = "string" }
 variable "key_pair_loc" { type = "string" }
 variable "ssl_acm_arn" { type = "string" }
+variable "cloudfront_ssl_acm_arn" { type = "string" }
 
 variable "security_groups" { type = "list" }
