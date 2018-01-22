@@ -11,8 +11,8 @@ data "template_file" "ghost-config" {
     }
 }
 
-data "template_file" "nginx-config" {
-    template = "${file("${path.module}/configs/nginx.tpl")}"
+data "template_file" "nginx-site-config" {
+    template = "${file("${path.module}/configs/nginx-site.tpl")}"
 
     vars {
       domain-name   = "${var.domain_name}"

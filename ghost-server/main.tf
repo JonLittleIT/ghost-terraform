@@ -23,7 +23,7 @@ resource "aws_instance" "ghost" {
     inline = [
       "sudo apt-get update",
       "curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -",
-      "sudo apt-get install -y unzip nginx nodejs",
+      "sudo apt-get install -y unzip nginx nginx-full nodejs",
       "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -",
       "echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list",
       "sudo apt-get update && sudo apt-get install yarn",
@@ -85,7 +85,7 @@ resource "aws_instance" "ghost" {
       "sudo touch /etc/nginx/sites-available/ghost && sudo chown ubuntu:ubuntu /etc/nginx/sites-available/ghost",
       "sudo touch /etc/systemd/system/ghost.service && sudo chown ubuntu:ubuntu /etc/systemd/system/ghost.service",
       "cat <<FILEXXX > /etc/nginx/sites-available/ghost",
-      "${data.template_file.nginx-config.rendered}",
+      "${data.template_file.nginx-site-config.rendered}",
       "FILEXXX",
       "sudo cat <<FILEXXX > /etc/systemd/system/ghost.service",
       "${data.template_file.service-config.rendered}",
