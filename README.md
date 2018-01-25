@@ -4,7 +4,7 @@ This Terraform configuration self-hosts the Ghost blog:
 
 [https://pragmacoders.com/](https://pragmacoders.com/)
 
-## Article coming soon!
+## There's an article on this!
 
 This blog is set up through Terraform:
 
@@ -13,4 +13,6 @@ This blog is set up through Terraform:
 - Behind an Elastic Load Balancer
 - Served through the Cloudfront CDN
 
-Article with a tutorial on using this to self-host your own Ghost blog, coming soon!
+An article with a tutorial on using this to self-host your own Ghost blog can be found:
+
+[https://pragmacoders.com/self-hosting-a-ghost-blog-on-aws-with-terraform/](https://pragmacoders.com/self-hosting-a-ghost-blog-on-aws-with-terraform/)

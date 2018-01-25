@@ -1,5 +1,9 @@
-
 resource "aws_cloudfront_distribution" "ghost-blog" {
+  enabled             = true
+  is_ipv6_enabled     = true
+  default_root_object = "/"
+  aliases = ["${var.domain_name}", "www.${var.domain_name}"]
+
   origin {
     domain_name = "${aws_instance.ghost.public_dns}"
     origin_id   = "${var.name}-origin"
@@ -12,15 +16,9 @@ resource "aws_cloudfront_distribution" "ghost-blog" {
     }
   }
 
-  enabled             = true
-  is_ipv6_enabled     = true
-  default_root_object = "/"
-
   lifecycle {
     prevent_destroy = true
   }
-
-  aliases = ["${var.domain_name}", "www.${var.domain_name}"]
 
   default_cache_behavior {
     allowed_methods   = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]

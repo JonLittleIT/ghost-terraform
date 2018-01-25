@@ -17,15 +17,15 @@ server {
         proxy_buffering off;
     }
 
-    location ~ ^/img_responsive/([0-9]+)(?:/(.*))?$ {
-      proxy_pass http://localhost:2368/$2;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header Host $http_host;
+    location ~ ^/img_responsive/([0-9]+)(?:/(.*))?${replace("%", "%", "\\$")} {
+      proxy_pass http://localhost:2368/${replace("%2", "%", "\\$")};
+      proxy_set_header X-Forwarded-For ${replace("%proxy_add_x_forwarded_for", "%", "\\$")};
+      proxy_set_header Host ${replace("%http_host", "%", "\\$")};
       proxy_set_header X-Forwarded-Proto https;
       proxy_buffering off;
       image_filter_buffer 10M;
       image_filter_jpeg_quality 80;
-      image_filter resize $1 -;
+      image_filter resize ${replace("%1", "%", "\\$")} -;
     }
 
     location = /health {
