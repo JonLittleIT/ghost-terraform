@@ -1,7 +1,7 @@
 
 resource "aws_cloudfront_distribution" "ghost-blog" {
   origin {
-    domain_name = "${aws_elb.ghost.dns_name}"
+    domain_name = "${aws_instance.ghost.public_dns}"
     origin_id   = "${var.name}-origin"
 
     custom_origin_config {

@@ -9,7 +9,7 @@ resource "aws_instance" "ghost" {
   }
 
   lifecycle {
-    ignore_changes  = ["vpc_security_group_ids"]
+    ignore_changes  = ["ami", "vpc_security_group_ids"]
     prevent_destroy = true
   }
 
