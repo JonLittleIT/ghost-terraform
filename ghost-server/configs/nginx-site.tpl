@@ -8,7 +8,7 @@ server {
     index index.html index.htm;
 
     client_max_body_size 1G;
-    rewrite ^/subscribe/?(.*)${replace("%", "%", "\\$")} http://eepurl.com/dkpLAP redirect;
+    rewrite ^/subscribe/?(.*)${replace("%", "%", "\\$")} http://eepurl.com/dkpLAP permanent;
 
     location / {
         proxy_pass http://localhost:2368;
