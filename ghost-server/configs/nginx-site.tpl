@@ -8,6 +8,7 @@ server {
     index index.html index.htm;
 
     client_max_body_size 1G;
+    rewrite ^/subscribe/?(.*)${replace("%", "%", "\\$")} http://eepurl.com/dkpLAP redirect;
 
     location / {
         proxy_pass http://localhost:2368;
@@ -34,6 +35,10 @@ server {
       proxy_set_header Host ${replace("%http_host", "%", "\\$")};
       proxy_set_header X-Forwarded-Proto https;
       proxy_buffering off;
+    }
+
+    location /subscribe/?(.*)${replace("%", "%", "\\$")} {
+
     }
 
     location = /health {
