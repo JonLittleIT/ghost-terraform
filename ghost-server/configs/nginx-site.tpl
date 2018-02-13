@@ -28,7 +28,7 @@ server {
       image_filter resize ${replace("%1", "%", "\\$")} -;
     }
 
-    location ~ ^/subject/(.*)?${replace("%", "%", "\\$")} {
+    location ~ ^/t/(.*)?${replace("%", "%", "\\$")} {
       proxy_pass http://localhost:2368/tag/${replace("%1", "%", "\\$")};
       proxy_set_header X-Forwarded-For ${replace("%proxy_add_x_forwarded_for", "%", "\\$")};
       proxy_set_header Host ${replace("%http_host", "%", "\\$")};
