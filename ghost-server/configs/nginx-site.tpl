@@ -28,6 +28,14 @@ server {
       image_filter resize ${replace("%1", "%", "\\$")} -;
     }
 
+    location ~ ^/subject/(.*)?${replace("%", "%", "\\$")} {
+      proxy_pass http://localhost:2368/tag/${replace("%1", "%", "\\$")};
+      proxy_set_header X-Forwarded-For ${replace("%proxy_add_x_forwarded_for", "%", "\\$")};
+      proxy_set_header Host ${replace("%http_host", "%", "\\$")};
+      proxy_set_header X-Forwarded-Proto https;
+      proxy_buffering off;
+    }
+
     location = /health {
       return 200;
       #access_log off;
