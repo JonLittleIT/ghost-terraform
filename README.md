@@ -9,7 +9,7 @@ This Terraform configuration self-hosts the Ghost blog:
 This blog is set up through Terraform:
 
 - On AWS
-- Via an EC2 Instance and RDS MySQL DB
+- Via an EC2 Instance and RDS MySQL DB - gonig to change to docker.
 - Behind an Elastic Load Balancer
 - Served through the Cloudfront CDN
 
